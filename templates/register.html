@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://startbootstrap.github.io/startbootstrap-stylish-portfolio/css/styles.css" rel="stylesheet">
+  <style>
+    /* Custom styles for register page */
+    body {
+      background-color: #584a1d;
+      color: #fff;
+    }
+    .register-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #212529;
+      border-radius: 10px;
+      margin-top: 100px;
+    }
+    .register-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-control {
+      background-color: #343a40;
+      color: #fff;
+    }
+    .btn-primary {
+      background-color: #EAB100;
+      border-color: #000000;
+    }
+    .btn-primary:hover {
+      background-color: #223140;
+      border-color: #000000;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+      <div class="register-container">
+        <h2>Register</h2>
+        <form method="post" action="/register"> <!-- Added action attribute -->
+          <div class="mb-3">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your First Name" required> <!-- Added name attribute -->
+          </div>
+          <div class="mb-3">
+            <label for="surname" class="form-label">Surname</label>
+            <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter your Surname" required> <!-- Corrected id and added name attribute -->
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required> <!-- Added name attribute -->
+          </div>
+          <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select name="role" id="role" class="form-select"> <!-- Added class form-select for styling consistency -->
+              <option value="Student">Student</option>
+              <option value="Donor">Donor</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required> <!-- Added name attribute -->
+          </div>
+          <div class="mb-3">
+            <label for="password1" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="password1" name="password1" placeholder="Confirm your password" required> <!-- Corrected label and added name attribute -->
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+          <br>
+        </form>
+        <div class="mb-3">
+          <label>Already have an Account?</label>
+          <!-- Changed to an anchor tag styled as a button -->
+          <a class="btn btn-primary btn-block" href="{{ url_for('login' ) }}">Login Here</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Create Aid - Admin Dashboard</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <!-- Font Awesome icons (free version) -->
+    <link href="https://use.fontawesome.com/releases/v6.3.0/css/all.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Simple line icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet">
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet">
+    <!-- Core theme CSS (includes Bootstrap) -->
+    <link href="static/css/styles.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .fill-screen {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-wrapper {
+            flex: 1;
+        }
+        .footer {
+            margin-top: auto;
+        }
+        .btn-custom {
+            background-color: #063a6b;
+            color: #ffffff;
+            border-radius: 10px;
+            height: 50px;
+            width: 150px;
+            font-size: 20px;
+            font-family: 'Source Sans Pro', sans-serif;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body id="page-top" class="fill-screen">
+    <!-- Responsive navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5a5139;">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin' ) }}">Admin Page</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content wrapper -->
+    <div class="content-wrapper">
+        <!-- Form Section -->
+        <section class="content-section" id="form">
+            <div class="container px-4 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2 class="text-center mb-4">Create New Aid</h2>
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" id="title" name="title" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="faculty" class="form-label">Faculty</label>
+                                <select name="faculty" id="faculty" class="form-select"> <!-- Added class form-select for styling consistency -->
+                                    <option value="Accounting and Informatics">Accounting and Informatics</option>
+                                    <option value="Applied Science">Applied Science</option>
+                                    <option value="Arts and Design">Arts and Design</option>
+                                    <option value="Engineering and Built Environment">Engineering and Built Environment</option>
+                                    <option value="Health Science">Health Science</option>
+                                    <option value="Management Science">Management Science</option>
+                                    <option value="General Education">General Education</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="aid_type" class="form-label">Aid Type</label>
+                                <select name="aid_type" id="aid_type" class="form-select"> <!-- Added class form-select for styling consistency -->
+                                    <option value="Bursary">Bursary</option>
+                                    <option value="Scholarship">Scholarship</option>
+                                    <option value="Grant">Grant</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="aid_desc" class="form-label">Aid Description</label>
+                                <textarea id="aid_desc" name="aid_desc" class="form-control" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="aid_req" class="form-label">Aid Requirements</label>
+                                <textarea id="aid_req" name="aid_req" class="form-control" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="aid_link" class="form-label">Bursary Link</label>
+                                <input type="url" id="aid_link" name="aid_link" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="up_date" class="form-label">Upload Date</label>
+                                <input type="date" id="up_date" name="up_date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dead_date" class="form-label">Deadline Date</label>
+                                <input type="date" id="dead_date" name="dead_date" class="form-control" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-custom">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container px-4 px-lg-5">
+            <p class="text-muted small mb-0">Copyright &copy; Fantastic 11 @ 2023</p>
+        </div>
+    </footer>
+    
+    <!-- Scroll to Top Button -->
+    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS -->
+    <script src="static/js/scripts.js"></script>
+</body>
+</html>

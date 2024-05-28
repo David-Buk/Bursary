@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Aid</title>
+    <!-- Add your CSS styles here -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Simple line icons-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="static/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5a5139;">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin' ) }}">Admin Page</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <!-- Form Section -->
+        <section class="content-section" id="form">
+            <div class="container px-4 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2 class="text-center mb-4">Create New Aid</h2>
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input type="text" id="title" name="title" value="{{ aid.title }}" required><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="faculty" class="form-label">Faculty</label>
+                                <select name="faculty" id="faculty" class="form-select" value="{{ aid.faculty }}"> <!-- Added class form-select for styling consistency -->
+                                    <option value="Accounting and Informatics">Accounting and Informatics</option>
+                                    <option value="Applied Science">Applied Science</option>
+                                    <option value="Arts and Design">Arts and Design</option>
+                                    <option value="Engineering and Built Environment">Engineering and Built Environment</option>
+                                    <option value="Health Science">Health Science</option>
+                                    <option value="Management Science">Management Science</option>
+                                    <option value="General Education">General Education</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="aid_type" class="form-label">Aid Type</label>
+                                <select name="aid_type" id="aid_type" class="form-select" value="{{ aid.aid_type }}"> <!-- Added class form-select for styling consistency -->
+                                    <option value="Bursary">Bursary</option>
+                                    <option value="Scholarship">Scholarship</option>
+                                    <option value="Grant">Grant</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="aid_desc">Description:</label>
+                                <textarea id="aid_desc" name="aid_desc" required>{{ aid.aid_description }}</textarea><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="aid_req">Requirements:</label>
+                                <textarea id="aid_req" name="aid_req" required>{{ aid.aid_requirements }}</textarea><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="aid_link">Link:</label>
+                                <input type="url" id="aid_link" name="aid_link" value="{{ aid.aid_link }}"><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="up_date">Upload Date:</label>
+                                <input type="date" id="up_date" name="up_date" value="{{ aid.upload_date.strftime('%Y-%m-%d') }}" required><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="dead_date">Deadline Date:</label>
+                                <input type="date" id="dead_date" name="dead_date" value="{{ aid.deadline_date.strftime('%Y-%m-%d') }}" required><br>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-custom">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
