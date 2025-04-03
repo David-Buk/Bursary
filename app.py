@@ -208,20 +208,9 @@ def login():
         user = User.query.filter_by(email=email).first()
         print("Handling POST request")  # Additional logging
         if user and user.check_password(password):
-            print("Check log-in")
             login_user(user)
-            if user.role == 'Admin':
-                flash('Welcome Admin.', 'Success')
-                return redirect(url_for('admin'))
-            
-            elif user.role == 'Student':
-                flash("Student logged in")
-                return redirect(url_for('student'))
-            
-            elif user.role == 'Donor':
-                flash('Donor logged in successfully!')
-                return redirect(url_for('donor'))
-            
+            flash(f"Welcome {user.role}.", 'success')
+            return redirect(url_for(user.role.lower()))
         else:
             # If authentication fails, reload the login page with an error message
             return render_template('login.html', message='Invalid email or password.')
