@@ -77,6 +77,32 @@ def login():
         flash('Invalid credentials', 'danger')
     return render_template("login.html")
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['email']
+        email = request.form['email']
+        password = request.form['password']
+        confirm_password = request.form['password1']
+        role = request.form['role']
+        
+        if password != confirm_password:
+            flash("Passwords do not match!", 'danger')
+            return render_template('register.html')
+        
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash("Email already registered!", 'danger')
+            return render_template('register.html')
+        
+        new_user = User(username=username, email=email, password=generate_password_hash(password), role=role)
+        db.session.add(new_user)
+        db.session.commit()
+        flash("Registration successful! Please log in.", 'success')
+        return redirect(url_for('login'))
+    
+    return render_template("register.html")
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -89,6 +115,15 @@ def logout():
 @role_required('Admin')
 def admin():
     return render_template("admin.html")
+
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
+
+@app.route('/contact')
+def contact():
+    return render_template("contact.html")
 
 @app.route('/student')
 @login_required
@@ -107,6 +142,8 @@ def bursary_view():
     page = request.args.get('page', 1, type=int)
     bursaries = Aid.query.filter_by(aid_type='Bursary').paginate(page=page, per_page=10)
     return render_template('bursary_view.html', bursaries=bursaries)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
